@@ -77,11 +77,16 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
+
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.color"
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId 'com.android.color'
         minSdkVersion rootProject.ext.minSdkVersion
@@ -89,8 +94,9 @@ android {
         versionCode 1
         versionName "1.0.0"
 
-        buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
+        buildConfigField("boolean", "ENABLE_CUSTOM_FIELDS", "true")
     }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
