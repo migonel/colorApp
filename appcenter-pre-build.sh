@@ -1,1 +1,2 @@
-npm install
+java --version
+nodejs --version
